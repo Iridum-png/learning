@@ -1,19 +1,28 @@
 extern crate rand;
 use rand::Rng;
-use std::collections::HashMap;
+use std::collections::{BTreeMap};
 
 fn main() {
+    // Call function 1
+    //_call_one();
+
     // Call function 2
     // _call_two();
     
     // Call function 3
-    _call_three();
+    // _call_three();
 
     // Call function 6
     // _call_six();
 
     // Call function 7
     // _call_seven();
+
+    // Call functin 8
+    _call_eight();
+}
+fn _call_one() {
+    _one(2,5,8);
 }
 
 fn _one(num1: i16, num2: i16, num3: i16) -> i16 {
@@ -37,7 +46,7 @@ fn _two(deck: Vec<u32>) {
 }
 
 fn _call_three() {
-    let mut map: HashMap::<String, String> = HashMap::new();
+    let mut map: BTreeMap::<String, String> = BTreeMap::new();
         map.insert("a".to_string(), "01".to_string());
         map.insert("b".to_string(), "02".to_string());
         map.insert("c".to_string(), "03".to_string());
@@ -100,17 +109,15 @@ fn _call_three() {
         map.insert("7".to_string(), "60".to_string());
         map.insert("8".to_string(), "61".to_string());
         map.insert("9".to_string(), "62".to_string());
-    for elem in _three(map).iter() {
+    for elem in _three(&map).iter() {
         println!("{}", elem);
     }
 }
 
-fn _three<'a>(key_value: HashMap<String, String>) -> Vec<&'a str> {
+fn _three<'a>(key_value: &'a BTreeMap<String, String>) -> Vec<&'a str> {
     let mut result: Vec<&'a str> = Vec::new();
-    println!("{:#?}", key_value.sorted().iter());
     for pair in key_value.iter() {
-        println!("{} {}", pair.0, pair.1);
-        // result.push(pair.0);
+        result.push(pair.0);
     }
     return result;
 }
@@ -141,10 +148,38 @@ fn _seven(list: &[i32], n: i32) -> Vec<i32> {
     return total;
 }
 
-// def eight(num1, num2):
-//     nums = []
-//     for i in range(num1, num2+1):
-//         for j in range(num1, num2+1):
-//             edit = sorted((i, j))
-//             nums.append(tuple(edit))
-//     return sorted(list(set([i for i in nums])))
+fn _call_eight() {
+    let num1 = 4;
+    let num2 = 8;
+    for elem in _eight(num1, num2) {
+        println!("{} | {}", elem.0, elem.1)
+    }
+}
+
+fn _eight(num1: i32, num2: i32) -> Vec<(i32, i32)> {
+    let mut nums = Vec::<(i32, i32)>::new();
+    for i in num1..num2+1 {
+        for j in num1..num2+1 {
+            let mut edit = (i, j);
+            if i > j {
+                edit = (j, i);
+            }
+            if !nums.contains(&edit) {
+                nums.push(edit);
+            }
+        }
+    }
+    let sorted = sort(&mut nums);
+    return sorted.to_vec();
+}
+
+fn sort(arr: &mut Vec<(i32, i32)>) -> Vec<(i32, i32)> {
+  for i in 0..arr.len() {
+    for j in 0..arr.len() - i - 1 {
+      if arr[j + 1].0 < arr[j].0 {
+        arr.swap(j, j + 1);
+      }
+    }
+  }
+  return arr.to_vec();
+}
