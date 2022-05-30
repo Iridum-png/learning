@@ -37,79 +37,80 @@ fn _two(deck: Vec<u32>) {
 }
 
 fn _call_three() {
-    let map = HashMap::from([
-        ("a", 1),
-        ("b", 2),
-        ("c", 3),
-        ("d", 4),
-        ("e", 5),
-        ("f", 6),
-        ("g", 7),
-        ("h", 8),
-        ("i", 9),
-        ("j", 10),
-        ("k", 11),
-        ("l", 12),
-        ("m", 13),
-        ("n", 14),
-        ("o", 15),
-        ("p", 16),
-        ("q", 17),
-        ("r", 18),
-        ("s", 19),
-        ("t", 20),
-        ("u", 21),
-        ("v", 22),
-        ("w", 23),
-        ("x", 24),
-        ("y", 25),
-        ("z", 26),
-        ("A", 27),
-        ("B", 28),
-        ("C", 29),
-        ("D", 30),
-        ("E", 31),
-        ("F", 32),
-        ("G", 33),
-        ("H", 34),
-        ("I", 35),
-        ("J", 36),
-        ("K", 37),
-        ("L", 38),
-        ("M", 39),
-        ("N", 40),
-        ("O", 41),
-        ("P", 42),
-        ("Q", 43),
-        ("R", 44),
-        ("S", 45),
-        ("T", 46),
-        ("U", 47),
-        ("V", 48),
-        ("W", 49),
-        ("X", 50),
-        ("Y", 51),
-        ("Z", 52),
-        ("0", 53),
-        ("1", 54),
-        ("2", 55),
-        ("3", 56),
-        ("4", 57),
-        ("5", 58),
-        ("6", 59),
-        ("7", 60),
-        ("8", 61),
-        ("9", 62),
-    ]);
+    let mut map: HashMap::<String, String> = HashMap::new();
+        map.insert("a".to_string(), "01".to_string());
+        map.insert("b".to_string(), "02".to_string());
+        map.insert("c".to_string(), "03".to_string());
+        map.insert("d".to_string(), "04".to_string());
+        map.insert("e".to_string(), "05".to_string());
+        map.insert("f".to_string(), "06".to_string());
+        map.insert("g".to_string(), "07".to_string());
+        map.insert("h".to_string(), "08".to_string());
+        map.insert("i".to_string(), "09".to_string());
+        map.insert("j".to_string(), "10".to_string());
+        map.insert("k".to_string(), "11".to_string());
+        map.insert("l".to_string(), "12".to_string());
+        map.insert("m".to_string(), "13".to_string());
+        map.insert("n".to_string(), "14".to_string());
+        map.insert("o".to_string(), "15".to_string());
+        map.insert("p".to_string(), "16".to_string());
+        map.insert("q".to_string(), "17".to_string());
+        map.insert("r".to_string(), "18".to_string());
+        map.insert("s".to_string(), "19".to_string());
+        map.insert("t".to_string(), "20".to_string());
+        map.insert("u".to_string(), "21".to_string());
+        map.insert("v".to_string(), "22".to_string());
+        map.insert("w".to_string(), "23".to_string());
+        map.insert("x".to_string(), "24".to_string());
+        map.insert("y".to_string(), "25".to_string());
+        map.insert("z".to_string(), "26".to_string());
+        map.insert("A".to_string(), "27".to_string());
+        map.insert("B".to_string(), "28".to_string());
+        map.insert("C".to_string(), "29".to_string());
+        map.insert("D".to_string(), "30".to_string());
+        map.insert("E".to_string(), "31".to_string());
+        map.insert("F".to_string(), "32".to_string());
+        map.insert("G".to_string(), "33".to_string());
+        map.insert("H".to_string(), "34".to_string());
+        map.insert("I".to_string(), "35".to_string());
+        map.insert("J".to_string(), "36".to_string());
+        map.insert("K".to_string(), "37".to_string());
+        map.insert("L".to_string(), "38".to_string());
+        map.insert("M".to_string(), "39".to_string());
+        map.insert("N".to_string(), "40".to_string());
+        map.insert("O".to_string(), "41".to_string());
+        map.insert("P".to_string(), "42".to_string());
+        map.insert("Q".to_string(), "43".to_string());
+        map.insert("R".to_string(), "44".to_string());
+        map.insert("S".to_string(), "45".to_string());
+        map.insert("T".to_string(), "46".to_string());
+        map.insert("U".to_string(), "47".to_string());
+        map.insert("V".to_string(), "48".to_string());
+        map.insert("W".to_string(), "49".to_string());
+        map.insert("X".to_string(), "50".to_string());
+        map.insert("Y".to_string(), "51".to_string());
+        map.insert("Z".to_string(), "52".to_string());
+        map.insert("0".to_string(), "53".to_string());
+        map.insert("1".to_string(), "54".to_string());
+        map.insert("2".to_string(), "55".to_string());
+        map.insert("3".to_string(), "56".to_string());
+        map.insert("4".to_string(), "57".to_string());
+        map.insert("5".to_string(), "58".to_string());
+        map.insert("6".to_string(), "59".to_string());
+        map.insert("7".to_string(), "60".to_string());
+        map.insert("8".to_string(), "61".to_string());
+        map.insert("9".to_string(), "62".to_string());
     for elem in _three(map).iter() {
         println!("{}", elem);
     }
 }
 
-fn _three<'a>(key_value: HashMap<&'a str, i32>) -> Vec<&'a str> {
+fn _three<'a>(key_value: HashMap<String, String>) -> Vec<&'a str> {
     let mut result: Vec<&'a str> = Vec::new();
+    println!("{:#?}", key_value.sorted().iter());
     for pair in key_value.iter() {
-        result.push(pair.0);
+        println!("{} {}", pair.0, pair.1);
+        // result.push(pair.0);
     }
     return result;
 }
