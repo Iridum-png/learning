@@ -4,25 +4,39 @@ use std::collections::{BTreeMap};
 
 fn main() {
     // Call function 1
-    //_call_one();
+    _call_one();
+    print!("\n");
 
     // Call function 2
-    // _call_two();
+    _call_two();
+    print!("\n");
     
     // Call function 3
-    // _call_three();
+    _call_three();
+    print!("\n");
+
+    // Call function 4
+    _call_four();
+    print!("\n");
+
+    // Call function 5
+    _call_five();
+    print!("\n");
 
     // Call function 6
-    // _call_six();
+    _call_six();
+    print!("\n");
 
     // Call function 7
-    // _call_seven();
+    _call_seven();
+    print!("\n");
 
-    // Call functin 8
+    // Call function 8
     _call_eight();
+    print!("\n");
 }
 fn _call_one() {
-    _one(2,5,8);
+    println!("{}", _one(2,5,8));
 }
 
 fn _one(num1: i16, num2: i16, num3: i16) -> i16 {
@@ -122,6 +136,37 @@ fn _three<'a>(key_value: &'a BTreeMap<String, String>) -> Vec<&'a str> {
     return result;
 }
 
+fn _call_four() {
+    let mut random = rand::thread_rng();
+    let mut arr = Vec::<i32>::new();
+    for _ in 0..random.gen_range(1..15) {
+        arr.push(random.gen_range(1..100));
+    }
+    let result = _four(arr);
+    println!("{} {}", result.0, result.1);
+}
+
+fn _four(mut arr: Vec<i32>) -> (i32, i32) {
+    arr.sort();
+    return (arr[arr.len()-1], arr[arr.len()-2])
+}
+
+fn _call_five() {
+    println!("{}", _five("qWeRtYuIoP"));
+}
+
+fn _five(string: &str) -> String {
+    let mut swapped = String::new();
+    for character in string.chars() {
+        if character.is_uppercase() {
+            swapped += &character.to_string().to_ascii_lowercase();
+        } else {
+            swapped += &character.to_string().to_ascii_uppercase();
+        }
+    }
+    return swapped;
+}
+
 fn _call_six() {
     println!("{}", _six(10));
 }
@@ -139,6 +184,7 @@ fn _call_seven() {
     for elem in _seven(&list, 3).iter() {
         print!("{}", elem);
     }
+    print!("\n");
 }
 fn _seven(list: &[i32], n: i32) -> Vec<i32> {
     let mut total = Vec::<i32>::new();
@@ -169,11 +215,11 @@ fn _eight(num1: i32, num2: i32) -> Vec<(i32, i32)> {
             }
         }
     }
-    let sorted = sort(&mut nums);
+    let sorted = _sort(&mut nums);
     return sorted.to_vec();
 }
 
-fn sort(arr: &mut Vec<(i32, i32)>) -> Vec<(i32, i32)> {
+fn _sort(arr: &mut Vec<(i32, i32)>) -> Vec<(i32, i32)> {
   for i in 0..arr.len() {
     for j in 0..arr.len() - i - 1 {
       if arr[j + 1].0 < arr[j].0 {
