@@ -4,10 +4,39 @@ use std::collections::HashMap;
 
 fn main() {
     // Call function 2
+    // _call_two();
+    
+    // Call function 3
+    _call_three();
+
+    // Call function 6
+    // _call_six();
+
+    // Call function 7
+    // _call_seven();
+}
+
+fn _one(num1: i16, num2: i16, num3: i16) -> i16 {
+    if num1 % 2 == 0 {
+        return num1 * num2;
+    } else {
+        return num1 * num3;
+    }
+}
+
+fn _call_two() {
     let deck = (1..53).collect::<Vec<u32>>();
     _two(deck);
+}
 
-    // Call function 3
+fn _two(deck: Vec<u32>) {
+    let mut random = rand::thread_rng();
+
+    let choice = deck[random.gen_range(0..52)];
+    println!("{}", choice)
+}
+
+fn _call_three() {
     let map = HashMap::from([
         ("a", 1),
         ("b", 2),
@@ -72,36 +101,12 @@ fn main() {
         ("8", 61),
         ("9", 62),
     ]);
-    for elem in three(map).iter() {
+    for elem in _three(map).iter() {
         println!("{}", elem);
     }
-
-    // Call function 6
-    println!("{}", six(10));
-
-    // Call function 7
-    let list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    for elem in seven(&list, 3).iter() {
-        print!("{}", elem);
-    }
 }
 
-fn _one(num1: i16, num2: i16, num3: i16) -> i16 {
-    if num1 % 2 == 0 {
-        return num1 * num2;
-    } else {
-        return num1 * num3;
-    }
-}
-
-fn _two(deck: Vec<u32>) {
-    let mut random = rand::thread_rng();
-
-    let choice = deck[random.gen_range(0..52)];
-    println!("{}", choice)
-}
-
-fn three<'a>(key_value: HashMap<&'a str, i32>) -> Vec<&'a str> {
+fn _three<'a>(key_value: HashMap<&'a str, i32>) -> Vec<&'a str> {
     let mut result: Vec<&'a str> = Vec::new();
     for pair in key_value.iter() {
         result.push(pair.0);
@@ -109,7 +114,11 @@ fn three<'a>(key_value: HashMap<&'a str, i32>) -> Vec<&'a str> {
     return result;
 }
 
-fn six(n: u32) -> u32 {
+fn _call_six() {
+    println!("{}", _six(10));
+}
+
+fn _six(n: u32) -> u32 {
     let mut total = 0;
     for i in 1..n+1 {
         total += i^3;
@@ -117,19 +126,19 @@ fn six(n: u32) -> u32 {
     return total;
 }
 
-fn seven(list: &[i32], n: i32) -> Vec<i32> {
+fn _call_seven() {
+    let list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    for elem in _seven(&list, 3).iter() {
+        print!("{}", elem);
+    }
+}
+fn _seven(list: &[i32], n: i32) -> Vec<i32> {
     let mut total = Vec::<i32>::new();
     for i in 0..list.len() {
         total.push(list[i] / n);
     }
     return total;
 }
-
-// def seven(list, num):
-//     list2 = []
-//     for item in list:
-//         list2.append(item // num)
-//     return list2
 
 // def eight(num1, num2):
 //     nums = []
